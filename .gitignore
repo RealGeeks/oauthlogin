@@ -8,3 +8,4 @@ build/
 cover_html/
 .grunt
 _SpecRunner.html
+dist/

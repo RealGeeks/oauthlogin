@@ -1,9 +1,27 @@
-/*jsling node: true */
+/*jslint node: true */
+/*global window: false */
 'use strict';
 
-var OauthLogin = function(authorize_url, client_id) {
-  this.authorize_url = authorize_url;
-  this.client_id = client_id;
+var querystring = require('querystring');
+
+var OauthLogin = function(authorizeUrl, clientId) {
+  this.authorizeUrl = authorizeUrl;
+  this.clientId = clientId;
+};
+
+OauthLogin.prototype.navigate = function(newUrl) {
+  window.location.href = newUrl;
+};
+
+OauthLogin.prototype.authorize = function(callbackUrl, scope, prompt) {
+  var qs = querystring.stringify({
+      response_type: "token", // We only support the js flow
+      client_id: this.clientId,
+      scope: scope || "default",
+      prompt: prompt || "consent",
+      redirect_uri: encodeURIComponent(callbackUrl)
+  });
+  this.navigate(this.authorizeUrl + qs);
 };
 
 
