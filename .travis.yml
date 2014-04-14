@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "0.11"
+before_script:
+  - npm install -g grunt-cli
 notifications:
   hipchat:
     - secure: "caU7kvAo+RfUGzJk7tatoOm5OOIEB4T/00vi3b1XykWHvWThupaObrU/a7aoL3FwhVxuOj6tinx7Lf46McJAExBhm2yKObIX40PDOeQJzTj9cy5A9lzo2i3lZnsaLTvVKrNJ/c3+23h23WP2Ftt6fkGHzBeEoGaqLyQAt61kSXs="
