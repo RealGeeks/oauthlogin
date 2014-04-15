@@ -4,6 +4,8 @@
 
 var querystring = require('querystring');
 var url = require('url');
+var util = require('util');
+var querystring = require('querystring');
 
 var OauthLogin = function(authorizeUrl, callbackUrl, clientId) {
   this.authorizeUrl = authorizeUrl;
@@ -22,17 +24,19 @@ OauthLogin.prototype.getCurrentUrl = function() {
 OauthLogin.prototype.onCallbackUrl = function() {
   var url1 = url.parse(this.callbackUrl);
   var url2 = url.parse(this.getCurrentUrl());
-  // Everything but the hash fragment needs to match
+  // Match everything but the hash fragment and query string
   return url1.scheme === url2.scheme &&
-         url1.path === url2.path &&
+         url1.pathname === url2.pathname &&
          url1.hostname === url2.hostname &&
-         url1.port === url2.port &&
-         url1.query === url2.query;
+         url1.port === url2.port;
 };
 
 OauthLogin.prototype.authorize = function(scope, prompt) {
-
   if (this.onCallbackUrl()) {
+    var errorQs = querystring.parse(url.parse(this.getCurrentUrl()).query);
+    if ('error' in errorQs) {
+      throw new Error(errorQs.error);
+    }
     return 'foobar';
   }
 

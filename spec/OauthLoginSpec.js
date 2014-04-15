@@ -22,4 +22,9 @@ describe('OauthLogin', function() {
     var authToken = ol.authorize();
     expect(authToken).toBe('foobar');
   });
+
+  it("throws an error if authorization failed", function() {
+    spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback?error=access_denied");
+    expect(ol.authorize.bind(ol)).toThrow(new Error("access_denied"));
+  })
 });
