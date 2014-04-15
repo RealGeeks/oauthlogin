@@ -12,6 +12,16 @@ var authToken = ol.authorize();
 
 Call this script when your page loads if you need a auth token.  If you are on the callback url already, it will set authToken immediately (synchronously).  If you are not on the callback url, it will send your browser to to the authorization server.
 
+# Optional Parameters
+
+You can optionally call a couple other paramters on authorize: 
+
+```js
+ol.authorize('default', 'consent');
+```
+
+The first parameter, "scope", is the list of scopes you are asking for.  The second parameter, "prompt", is whether you want to be prompted to log in or not.
+
 # License
 
 The MIT License (MIT)
