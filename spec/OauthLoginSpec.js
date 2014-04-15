@@ -1,5 +1,4 @@
 var OauthLogin = require('../src/oauthlogin');
-var q = require('q');
 
 describe('OauthLogin', function() {
   var ol, deferred;
