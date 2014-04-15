@@ -4,7 +4,6 @@
 
 var querystring = require('querystring');
 var url = require('url');
-var util = require('util');
 var querystring = require('querystring');
 
 var OauthLogin = function(authorizeUrl, callbackUrl, clientId) {
@@ -31,13 +30,19 @@ OauthLogin.prototype.onCallbackUrl = function() {
          url1.port === url2.port;
 };
 
+OauthLogin.prototype.parseHashString = function() {
+  var hashFragment = url.parse(this.getCurrentUrl()).hash.substr(1);
+  return querystring.parse(hashFragment);
+};
+
 OauthLogin.prototype.authorize = function(scope, prompt) {
   if (this.onCallbackUrl()) {
     var errorQs = querystring.parse(url.parse(this.getCurrentUrl()).query);
     if ('error' in errorQs) {
       throw new Error(errorQs.error);
     }
-    return 'foobar';
+    var hash = this.parseHashString();
+    return hash.access_token;
   }
 
   var qs = querystring.stringify({

@@ -18,7 +18,7 @@ describe('OauthLogin', function() {
   });
 
   it("can return the auth token from the callback", function() {
-    spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback#authToken=foobar");
+    spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback#access_token=foobar");
     var authToken = ol.authorize();
     expect(authToken).toBe('foobar');
   });
