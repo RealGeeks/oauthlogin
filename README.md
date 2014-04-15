@@ -32,7 +32,7 @@ Calls to authorize normally return a key.  Sometimes, it will throw an error.  T
 
 # Changelog
 
- * 0.1.0: Add error handling
+ * 0.0.5: Add error handling and make hash fragment parsing actually work
  * 0.0.4: Don't double urlencode the redirect URL
  * 0.0.3: Add ? before querystring
  * 0.0.2: Include unminified version in dist
