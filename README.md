@@ -1,5 +1,9 @@
 # oauthlogin.js
 
+This is a simple interface for using the javascript oauth2 flow.
+
+Heads up: Don't actually use this yet, it's still in development.
+
 [![Build Status](https://travis-ci.org/RealGeeks/oauthlogin.svg?branch=master)](https://travis-ci.org/RealGeeks/oauthlogin)
 
 
@@ -14,7 +18,7 @@ Call this script when your page loads if you need a auth token.  If you are on t
 
 # Optional Parameters
 
-You can optionally call a couple other paramters on authorize: 
+You can optionally call a couple other paramters on authorize:
 
 ```js
 ol.authorize('default', 'consent');
@@ -22,8 +26,13 @@ ol.authorize('default', 'consent');
 
 The first parameter, "scope", is the list of scopes you are asking for.  The second parameter, "prompt", is whether you want to be prompted to log in or not.
 
+# Error Handling
+
+Calls to authorize normally return a key.  Sometimes, it will throw an error.  This will happen if authorization fails, for instance.  You can handle this with catch.
+
 # Changelog
 
+ * 0.1.0: Add error handling
  * 0.0.4: Don't double urlencode the redirect URL
  * 0.0.3: Add ? before querystring
  * 0.0.2: Include unminified version in dist
