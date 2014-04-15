@@ -3,7 +3,7 @@
 'use strict';
 
 var querystring = require('querystring');
-var URI = require('uri-js');
+var url = require('url');
 
 var OauthLogin = function(authorizeUrl, callbackUrl, clientId) {
   this.authorizeUrl = authorizeUrl;
@@ -20,12 +20,12 @@ OauthLogin.prototype.getCurrentUrl = function() {
 };
 
 OauthLogin.prototype.onCallbackUrl = function() {
-  var url1 = URI.parse(this.callbackUrl);
-  var url2 = URI.parse(this.getCurrentUrl());
+  var url1 = url.parse(this.callbackUrl);
+  var url2 = url.parse(this.getCurrentUrl());
   // Everything but the hash fragment needs to match
   return url1.scheme === url2.scheme &&
          url1.path === url2.path &&
-         url1.host === url2.host &&
+         url1.hostname === url2.hostname &&
          url1.port === url2.port &&
          url1.query === url2.query;
 };
