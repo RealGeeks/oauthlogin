@@ -9,7 +9,7 @@ describe('OauthLogin', function() {
   it("can load the authorization url", function() {
     spyOn(ol, 'navigate');
     ol.authorize();
-    expect(ol.navigate).toHaveBeenCalledWith('http://localhost/authresponse_type=token&client_id=1&scope=default&prompt=consent&redirect_uri=http%253A%252F%252Flocalhost%252Fauth%252Fcallback');
+    expect(ol.navigate).toHaveBeenCalledWith('http://localhost/auth?response_type=token&client_id=1&scope=default&prompt=consent&redirect_uri=http%253A%252F%252Flocalhost%252Fauth%252Fcallback');
   });
 
   it("can recognize a callback URL", function() {

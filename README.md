@@ -24,6 +24,7 @@ The first parameter, "scope", is the list of scopes you are asking for.  The sec
 
 # Changelog
 
+ * 0.0.3: Add ? before querystring
  * 0.0.2: Include unminified version in dist
  * 0.0.1: Initial release
 
