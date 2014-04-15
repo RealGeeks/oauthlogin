@@ -39,6 +39,12 @@ module.exports = function(grunt) {
           debug: true
         }
       }
+    },
+    copy: {
+      main: {
+        src: 'build/<%= pkg.name %>.js',
+        dest: 'dist/<%= pkg.name %>.js'
+      }
     }
   });
 
@@ -47,9 +53,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
   grunt.registerTask('test', ['jshint','browserify','connect','jasmine']);
-  grunt.registerTask('build', ['test','uglify']);
+  grunt.registerTask('build', ['test','copy','uglify']);
 
 };

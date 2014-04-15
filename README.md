@@ -22,6 +22,11 @@ ol.authorize('default', 'consent');
 
 The first parameter, "scope", is the list of scopes you are asking for.  The second parameter, "prompt", is whether you want to be prompted to log in or not.
 
+# Changelog
+
+ * 0.0.2: Include unminified version in dist
+ * 0.0.1: Initial release
+
 # License
 
 The MIT License (MIT)
