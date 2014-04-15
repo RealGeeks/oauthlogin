@@ -1,0 +1,25 @@
+{
+  "name": "oauthlogin",
+  "version": "0.0.1",
+  "homepage": "https://github.com/RealGeeks/oauthlogin",
+  "authors": [
+    "Kevin McCarthy <me@kevinmccarthy.org>"
+  ],
+  "description": "A simple javascript flow oauth2 library",
+  "main": "dist/oauthlogin.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "oauth2",
+    "client"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
