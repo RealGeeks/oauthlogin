@@ -41,7 +41,7 @@ OauthLogin.prototype.authorize = function(scope, prompt) {
       client_id: this.clientId,
       scope: scope || "default",
       prompt: prompt || "consent",
-      redirect_uri: encodeURIComponent(this.callbackUrl)
+      redirect_uri: this.callbackUrl
   });
   this.navigate(this.authorizeUrl + '?' + qs);
 };
