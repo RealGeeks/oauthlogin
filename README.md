@@ -11,8 +11,10 @@ The interface looks like this:
 
 ```js
 var ol = new OauthLogin('http://www.oauthprovider.com/oauth/authorize', 'http://localhost/oauth/callback');
-var authToken = ol.authorize();
+var resp = ol.authorize();
 ```
+
+resp will have an authToken property, as well as optional `scope` and `state` properties.
 
 Call this script when your page loads if you need a auth token.  If you are on the callback url already, it will set authToken immediately (synchronously).  If you are not on the callback url, it will send your browser to to the authorization server.
 
@@ -32,6 +34,7 @@ Calls to authorize normally return a key.  Sometimes, it will throw an error.  T
 
 # Changelog
 
+ * 0.2.0: Return an object with {authToken, state, scope} instead of just authToken (backwards-incompatible API change)
  * 0.1.0: Add 'state' parameter
  * 0.0.5: Add error handling and make hash fragment parsing actually work
  * 0.0.4: Don't double urlencode the redirect URL

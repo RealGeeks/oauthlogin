@@ -49,7 +49,13 @@ OauthLogin.prototype.authorize = function(scope, prompt, state) {
       throw new Error(errorQs.error);
     }
     var hash = this.parseHashString();
-    return hash.access_token;
+    var resp = {
+      authToken: hash.access_token,
+      state: hash.state,
+      scope: hash.scope
+    };
+    compactObject(resp);
+    return resp;
   }
 
   var qs = {

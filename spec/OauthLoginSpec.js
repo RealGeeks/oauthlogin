@@ -37,8 +37,20 @@ describe('OauthLogin', function() {
 
   it("can return the auth token from the callback", function() {
     spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback#access_token=foobar");
-    var authToken = ol.authorize();
-    expect(authToken).toBe('foobar');
+    var resp = ol.authorize();
+    expect(resp.authToken).toBe('foobar');
+  });
+
+  it("can return the state from the callback", function() {
+    spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback#access_token=foobar&state=whatever");
+    var resp = ol.authorize();
+    expect(resp.state).toBe('whatever');
+  });
+
+  it("can return the scope from the callback", function() {
+    spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback#access_token=foobar&scope=whatever");
+    var resp = ol.authorize();
+    expect(resp.scope).toBe('whatever');
   });
 
   it("throws an error if authorization failed", function() {
