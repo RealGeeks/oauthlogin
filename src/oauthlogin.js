@@ -4,7 +4,14 @@
 
 var querystring = require('querystring');
 var url = require('url');
-var querystring = require('querystring');
+
+var compactObject = function(obj) {
+  Object.keys(obj).forEach(function(k) {
+    if (!obj[k]) {
+      delete obj[k];
+    }
+  });
+};
 
 var OauthLogin = function(authorizeUrl, callbackUrl, clientId) {
   this.authorizeUrl = authorizeUrl;
@@ -35,7 +42,7 @@ OauthLogin.prototype.parseHashString = function() {
   return querystring.parse(hashFragment);
 };
 
-OauthLogin.prototype.authorize = function(scope, prompt) {
+OauthLogin.prototype.authorize = function(scope, prompt, state) {
   if (this.onCallbackUrl()) {
     var errorQs = querystring.parse(url.parse(this.getCurrentUrl()).query);
     if ('error' in errorQs) {
@@ -45,14 +52,16 @@ OauthLogin.prototype.authorize = function(scope, prompt) {
     return hash.access_token;
   }
 
-  var qs = querystring.stringify({
+  var qs = {
       response_type: "token", // We only support the js flow
       client_id: this.clientId,
       scope: scope || "default",
       prompt: prompt || "consent",
+      state: state,
       redirect_uri: this.callbackUrl
-  });
-  this.navigate(this.authorizeUrl + '?' + qs);
+  };
+  compactObject(qs);
+  this.navigate(this.authorizeUrl + '?' + querystring.stringify(qs));
 };
 
 

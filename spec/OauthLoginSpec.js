@@ -12,6 +12,24 @@ describe('OauthLogin', function() {
     expect(ol.navigate).toHaveBeenCalledWith('http://localhost/auth?response_type=token&client_id=1&scope=default&prompt=consent&redirect_uri=http%3A%2F%2Flocalhost%2Fauth%2Fcallback');
   });
 
+  it("can optionally send different scopes", function() {
+    spyOn(ol, 'navigate');
+    ol.authorize('weirdscope');
+    expect(ol.navigate).toHaveBeenCalledWith('http://localhost/auth?response_type=token&client_id=1&scope=weirdscope&prompt=consent&redirect_uri=http%3A%2F%2Flocalhost%2Fauth%2Fcallback');
+  })
+
+  it("can optionally send different the prompt parameter", function() {
+    spyOn(ol, 'navigate');
+    ol.authorize('default', 'dontprompt');
+    expect(ol.navigate).toHaveBeenCalledWith('http://localhost/auth?response_type=token&client_id=1&scope=default&prompt=dontprompt&redirect_uri=http%3A%2F%2Flocalhost%2Fauth%2Fcallback');
+  })
+
+  it("can optionally send a state", function() {
+    spyOn(ol, 'navigate');
+    ol.authorize('default', 'consent', 'awesome');
+    expect(ol.navigate).toHaveBeenCalledWith('http://localhost/auth?response_type=token&client_id=1&scope=default&prompt=consent&state=awesome&redirect_uri=http%3A%2F%2Flocalhost%2Fauth%2Fcallback');
+  })
+
   it("can recognize a callback URL", function() {
     spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback");
     expect(ol.onCallbackUrl()).toBe(true);

@@ -21,10 +21,10 @@ Call this script when your page loads if you need a auth token.  If you are on t
 You can optionally call a couple other paramters on authorize:
 
 ```js
-ol.authorize('default', 'consent');
+ol.authorize('default', 'consent', 'funkystate');
 ```
 
-The first parameter, "scope", is the list of scopes you are asking for.  The second parameter, "prompt", is whether you want to be prompted to log in or not.
+The first parameter, "scope", is the list of scopes you are asking for.  The second parameter, "prompt", is whether you want to be prompted to log in or not.  The third parameter is 'state', which you can use to send some application state through the oauth server to keep track of stuff.
 
 # Error Handling
 
@@ -32,6 +32,7 @@ Calls to authorize normally return a key.  Sometimes, it will throw an error.  T
 
 # Changelog
 
+ * 0.1.0: Add 'state' parameter
  * 0.0.5: Add error handling and make hash fragment parsing actually work
  * 0.0.4: Don't double urlencode the redirect URL
  * 0.0.3: Add ? before querystring

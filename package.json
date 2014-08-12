@@ -1,6 +1,6 @@
 {
   "name": "oauthlogin",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "author": "Kevin McCarthy <me@kevinmccarthy.org>",
   "main": "src/oauthlogin.js",
   "devDependencies": {
