@@ -26,8 +26,8 @@ describe('OauthLogin', function() {
 
   it("can optionally send a state", function() {
     spyOn(ol, 'navigate');
-    ol.authorize('default', 'consent', 'awesome');
-    expect(ol.navigate).toHaveBeenCalledWith('http://localhost/auth?response_type=token&client_id=1&scope=default&prompt=consent&state=awesome&redirect_uri=http%3A%2F%2Flocalhost%2Fauth%2Fcallback');
+    ol.authorize('default', 'consent', 'awesome##foo&');
+    expect(ol.navigate).toHaveBeenCalledWith('http://localhost/auth?response_type=token&client_id=1&scope=default&prompt=consent&state=awesome%23%23foo%26&redirect_uri=http%3A%2F%2Flocalhost%2Fauth%2Fcallback');
   })
 
   it("can recognize a callback URL", function() {
@@ -48,9 +48,9 @@ describe('OauthLogin', function() {
   });
 
   it("can return the scope from the callback", function() {
-    spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback#access_token=foobar&scope=whatever");
+    spyOn(ol, 'getCurrentUrl').andReturn("http://localhost/auth/callback#access_token=foobar&scope=whatever%23%23%26");
     var resp = ol.authorize();
-    expect(resp.scope).toBe('whatever');
+    expect(resp.scope).toBe('whatever##&');
   });
 
   it("throws an error if authorization failed", function() {
