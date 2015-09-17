@@ -2,8 +2,6 @@
 
 This is a simple interface for using the javascript oauth2 flow.
 
-Heads up: Don't actually use this yet, it's still in development.
-
 [![Build Status](https://travis-ci.org/RealGeeks/oauthlogin.svg?branch=master)](https://travis-ci.org/RealGeeks/oauthlogin)
 
 
